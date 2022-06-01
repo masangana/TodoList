@@ -1,0 +1,178 @@
+$font-family: sans-serif;
+$main-color : #fff;
+$second-color : #000;
+$focus-color : #c5c3c2;
+$derive-color : #666;
+
+//make a function for style and reuse
+@mixin margin-sides {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin flex($direction, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+//end
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $second-color;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+section {
+  @include margin-sides();
+
+  margin-top: 10vh;
+  width: 50vw;
+
+  // Top Section
+  .section-head {
+    background-color: $main-color;
+
+    @include flex(row, space-between, center);
+
+    border-bottom: 1px solid $derive-color;
+
+    h1 {
+      font-size: 1.5rem;
+      padding: 1rem;
+      margin: 0;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+  }
+
+// Bottom Section
+  .clean-section {
+
+    h2 {
+      font-size: 1rem;
+      border-top: 1px solid #333;
+      padding: 1rem;
+      margin: 0;
+      text-align: center;
+      background-color: $main-color;
+      cursor: pointer;
+    }
+  }
+
+  //Input Section
+  .input-div {
+    @include flex(row, space-between, center);
+
+    background-color: $main-color;
+    border-bottom: 1px solid $derive-color;
+
+    input {
+      display: block;
+      font-style: italic;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      border-style: hidden;
+      background-color: $main-color;
+      width: 90%;
+
+      &:focus {
+        outline: solid ;
+      }
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+
+    button {
+      border: none;
+      margin-right: 1rem;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  // List cont style
+  .list-cont {
+    display: block;
+    overflow-y: scroll;
+    height: 50vh;
+    background-color: $main-color;
+    padding: 0;
+
+    li {
+      @include flex(row, space-between, center);
+
+      font-size: 1.5rem;
+      border-style: hidden;
+      background-color: $main-color;
+      border-bottom: 1px solid $focus-color;
+      height: 3rem;
+      padding-left: 10px;
+
+      &:focus {
+        color: $derive-color;
+        background-color: $focus-color;
+        font-size: 1.7rem;
+
+      }
+
+      &.checked {
+        
+        text-decoration: line-through;
+        opacity: 0.5;
+        background-color: lightgrey;
+        label{
+            pointer-events: none;
+        }
+        
+        
+      }
+
+      .checkbox {
+        margin-left: 0.5rem;
+        cursor: pointer;
+      }
+
+      label {
+        margin-left: 0.5rem;
+        margin-right: auto;
+        letter-spacing: 1.5px;
+        width: 100%;
+        text-align: left;
+      }
+
+      button {
+        border: none;
+        margin-right: 1rem;
+        cursor: move;
+      }
+
+      .check-button {
+        background: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
