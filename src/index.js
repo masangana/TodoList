@@ -1,14 +1,13 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import 'bootstrap';
 import './style.scss';
-import loopTask from './modules/taskList';
-
+import loopTask from './modules/taskList.js';
 
 function component() {
-    const element = document.createElement('div');
+  const element = document.createElement('div');
 
-    loopTask();
-    return element;
-  }
-  
-  document.body.appendChild(component());
+  loopTask();
+  return element;
+}
+
+document.body.appendChild(component());

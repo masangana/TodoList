@@ -1,22 +1,9 @@
+
 $font-family: sans-serif;
 $main-color : #fff;
 $second-color : #000;
 $focus-color : #c5c3c2;
 $derive-color : #666;
-
-//make a function for style and reuse
-@mixin margin-sides {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@mixin flex($direction, $justify: center, $align: center) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-}
-//end
 
 * {
   box-sizing: border-box;
@@ -37,19 +24,19 @@ body {
   overflow: hidden;
 }
 
-
 section {
-  @include margin-sides();
-
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10vh;
   width: 50vw;
 
   // Top Section
   .section-head {
     background-color: $main-color;
-
-    @include flex(row, space-between, center);
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid $derive-color;
 
     h1 {
@@ -66,9 +53,8 @@ section {
     }
   }
 
-// Bottom Section
+  // Bottom Section
   .clean-section {
-
     h2 {
       font-size: 1rem;
       border-top: 1px solid #333;
@@ -82,8 +68,10 @@ section {
 
   //Input Section
   .input-div {
-    @include flex(row, space-between, center);
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: $main-color;
     border-bottom: 1px solid $derive-color;
 
@@ -97,7 +85,7 @@ section {
       width: 90%;
 
       &:focus {
-        outline: solid ;
+        outline: solid;
       }
 
       &:focus::placeholder {
@@ -122,8 +110,10 @@ section {
     padding: 0;
 
     li {
-      @include flex(row, space-between, center);
-
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       font-size: 1.5rem;
       border-style: hidden;
       background-color: $main-color;
@@ -135,24 +125,6 @@ section {
         color: $derive-color;
         background-color: $focus-color;
         font-size: 1.7rem;
-
-      }
-
-      &.checked {
-        
-        text-decoration: line-through;
-        opacity: 0.5;
-        background-color: lightgrey;
-        label{
-            pointer-events: none;
-        }
-        
-        
-      }
-
-      .checkbox {
-        margin-left: 0.5rem;
-        cursor: pointer;
       }
 
       label {
@@ -161,6 +133,21 @@ section {
         letter-spacing: 1.5px;
         width: 100%;
         text-align: left;
+      }
+
+      &.checked {
+        text-decoration: line-through;
+        opacity: 0.5;
+        background-color: lightgrey;
+
+        label {
+          pointer-events: none;
+        }
+      }
+
+      .checkbox {
+        margin-left: 0.5rem;
+        cursor: pointer;
       }
 
       button {
