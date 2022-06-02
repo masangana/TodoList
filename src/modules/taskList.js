@@ -29,7 +29,7 @@ const loopTask = () => {
     const li = [];
     const button = [];
     const buttonCheck = [];
-    //const input = [];
+    // const input = [];
     li[el.index] = document.createElement('li');
     li[el.index].setAttribute('id', el.index);
     if (el.completed === true) {
