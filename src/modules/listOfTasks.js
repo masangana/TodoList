@@ -1,4 +1,5 @@
 import Tasks from './taks.js';
+import Status from './status.js';
 
 export const lesTaches = JSON.parse(localStorage.getItem('todo_list'));
 if (lesTaches === null) {
@@ -34,6 +35,11 @@ export default class TaskList {
         li[element.index] = document.createElement('li');
         li[element.index].setAttribute('id', element.index);
         if (element.completed === true) {
+          input[element.index] = document.createElement('input');
+          input[element.index].setAttribute('type', 'checkbox');
+          input[element.index].classList.add('checkbox');
+          input[element.index].setAttribute('id', element.index);
+          input[element.index].setAttribute('checked', 'checked');
           li[element.index].classList.add('checked');
           buttonCheck[element.index] = document.createElement('button');
           buttonCheck[element.index].setAttribute('id', element.index);
@@ -64,7 +70,11 @@ export default class TaskList {
           textEl[element.index], button[element.index]);
         listContainer.append(li[element.index]);
 
+        
+
+        //event listener for clicking
         textEl[element.index].addEventListener('click', () => {
+            //get a close button
           const closedButton = document.getElementById(`close${element.index}`);
           closedButton.innerHTML = '<i class="fas fa-trash"></i>';
           closedButton.style.cursor = 'move';
@@ -85,14 +95,31 @@ export default class TaskList {
         });
 
         textEl[element.index].addEventListener('mouseleave', () => {
+            //button[element.index].innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+          //closedButton.style.cursor = 'move';
+          //textEl[element.index].removeEventListener('click', f)
           this.update(element.index, textEl[element.index].innerHTML);
         });
-
-        // textEl[element.index].addEventListener('mouseup', () => {
-        //   const closedButton = document.getElementById(`close${element.index}`);
-        //   // closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-        //   console.log('mousse up');
-        // });
+       // Checkbox Element
+      input[element.index].addEventListener('change', (e) => {
+        const status = new Status();
+        if (input[element.index].checked) {
+          status.checked(lesTaches[element.index-1]);
+          console.log(lesTaches[element.index-1].completed);
+          this.updateStatus(input[element.index].id, lesTaches[element.index-1].completed)  
+          li[element.index].classList.add('checked');
+          console.log("Checkbox is checked..");
+          console.log(input[element.index].id);
+        } else {
+          status.unchecked(lesTaches[element.index-1]);
+          console.log(lesTaches[element.index-1].completed);
+          li[element.index].classList.remove('checked');
+          console.log("Checkbox is not checked..");
+          console.log(lesTaches);
+          this.updateStatus(input[element.index].id, lesTaches[element.index-1].completed)
+        }
+      });
+       
       });
     }
   }
@@ -131,6 +158,12 @@ export default class TaskList {
     // this.show();
   }
 
+  updateStatus(id, status) {
+      console.log('id '+id)
+    this.listArray[id-1].status = status;
+    localStorage.setItem('todo_list', JSON.stringify(this.listArray));
+  }
+
   clearAll() {
     this.listArray = [];
     localStorage.clear();
@@ -140,7 +173,7 @@ export default class TaskList {
     clearAllCompleted = () => {
       this.listArray = this.listArray.filter((element) => element.completed === false);
       this.listArray.forEach((el, index) => {
-        el.index = index;
+        el.index = index +1;
       });
       localStorage.setItem('todo_list', JSON.stringify(this.listArray));
       window.location.reload();
