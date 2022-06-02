@@ -113,7 +113,8 @@ section {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
+      align-content: center;
       font-size: 1.5rem;
       border-style: hidden;
       background-color: $main-color;
@@ -127,12 +128,13 @@ section {
         font-size: 1.7rem;
       }
 
-      label {
+      p {
         margin-left: 0.5rem;
         margin-right: auto;
         letter-spacing: 1.5px;
         width: 100%;
         text-align: left;
+        //align-self: center;
       }
 
       &.checked {
@@ -140,7 +142,7 @@ section {
         opacity: 0.5;
         background-color: lightgrey;
 
-        label {
+        p {
           pointer-events: none;
         }
       }
@@ -162,4 +164,9 @@ section {
       }
     }
   }
+}
+
+[contenteditable] {
+  outline: 0 solid transparent;
+  margin-top: 3px;
 }

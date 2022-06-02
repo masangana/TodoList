@@ -29,6 +29,7 @@ export default class TaskList {
         const button = [];
         const buttonCheck = [];
         const textEl = [];
+        const input = [];
         //
         li[element.index] = document.createElement('li');
         li[element.index].setAttribute('id', element.index);
@@ -40,21 +41,26 @@ export default class TaskList {
           buttonCheck[element.index].classList.add('check-button');
           buttonCheck[element.index].innerHTML = '<i class="far fa-check-circle"></i>';
         } else {
+          input[element.index] = document.createElement('input');
+          input[element.index].setAttribute('type', 'checkbox');
+          input[element.index].classList.add('checkbox');
+          input[element.index].setAttribute('id', element.index);
           buttonCheck[element.index] = document.createElement('button');
           buttonCheck[element.index].setAttribute('id', element.index);
-          li[element.index].setAttribute('contenteditable', true);
+          // li[element.index].setAttribute('contenteditable', true);
           buttonCheck[element.index].classList.add('check-button');
           buttonCheck[element.index].innerHTML = '<i class="far fa-circle"></i>';
         }
 
-        textEl[element.index] = document.createElement('label');
+        textEl[element.index] = document.createElement('p');
         textEl[element.index].setAttribute('id', `text${element.index}`);
+        textEl[element.index].setAttribute('contenteditable', true);
         textEl[element.index].textContent = element.description;
         button[element.index] = document.createElement('button');
         button[element.index].setAttribute('id', `close${element.index}`);
         button[element.index].classList.add('ferme');
         button[element.index].innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-        li[element.index].append(buttonCheck[element.index],
+        li[element.index].append(input[element.index],
           textEl[element.index], button[element.index]);
         listContainer.append(li[element.index]);
 
@@ -62,13 +68,13 @@ export default class TaskList {
           const closedButton = document.getElementById(`close${element.index}`);
           closedButton.innerHTML = '<i class="fas fa-trash"></i>';
           closedButton.style.cursor = 'move';
-            //remove item
+          // remove item
           closedButton.addEventListener('click', () => {
             li[element.index].remove();
             this.remove(element.index - 1);
-          }); 
+          });
 
-          //close button
+          // close button
           const autresButton = document.querySelectorAll('.ferme');
           autresButton.forEach((unBoutton) => {
             if (unBoutton.id !== `close${element.index}`) {
@@ -79,23 +85,14 @@ export default class TaskList {
         });
 
         textEl[element.index].addEventListener('mouseleave', () => {
-            button[element.index].innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-            this.update(element.index,textEl[element.index].innerHTML);
-            const closedButton = document.getElementById(`close${element.index}`);
-            closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-            console.log(textEl[element.index])
-            console.log(textEl[element.index].innerHTML)
-            console.log(element.index)
+          this.update(element.index, textEl[element.index].innerHTML);
         });
 
-        textEl[element.index].addEventListener('mouseup', () => {
-            // const closedButton = document.getElementById(`close${element.index}`);
-            // closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-            // console.log(textEl[element.index])
-            // console.log(textEl[element.index].innerHTML)
-            // console.log(element.index)
-          });
-    
+        // textEl[element.index].addEventListener('mouseup', () => {
+        //   const closedButton = document.getElementById(`close${element.index}`);
+        //   // closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+        //   console.log('mousse up');
+        // });
       });
     }
   }
@@ -124,14 +121,14 @@ export default class TaskList {
   }
 
   update(num, description) {
-    if (this.listArray[num-1].index === Number(num)) {
-      this.listArray[num-1].description = description;
+    if (this.listArray[num - 1].index === Number(num)) {
+      this.listArray[num - 1].description = description;
     }
     this.listArray.forEach((el, index) => {
-      el.index = index+1;
+      el.index = index + 1;
     });
     localStorage.setItem('todo_list', JSON.stringify(this.listArray));
-    this.show();
+    // this.show();
   }
 
   clearAll() {
