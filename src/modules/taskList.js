@@ -29,6 +29,7 @@ const loopTask = () => {
     const li = [];
     const button = [];
     const buttonCheck = [];
+    //const input = [];
     li[el.index] = document.createElement('li');
     li[el.index].setAttribute('id', el.index);
     if (el.completed === true) {
@@ -41,7 +42,8 @@ const loopTask = () => {
     } else {
       buttonCheck[el.index] = document.createElement('button');
       buttonCheck[el.index].setAttribute('id', el.index);
-      buttonCheck[el.index].setAttribute('contenteditable', true);
+      li[el.index].setAttribute('contenteditable', true);
+      buttonCheck[el.index].classList.add('check-button');
       buttonCheck[el.index].innerHTML = '<i class="far fa-circle"></i>';
     }
 
