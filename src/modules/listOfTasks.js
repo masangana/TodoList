@@ -48,7 +48,7 @@ export default class TaskList {
         }
 
         textEl[element.index] = document.createElement('label');
-        textEl[element.index].setAttribute('id', element.index);
+        textEl[element.index].setAttribute('id', `text${element.index}`);
         textEl[element.index].textContent = element.description;
         button[element.index] = document.createElement('button');
         button[element.index].setAttribute('id', `close${element.index}`);
@@ -62,11 +62,13 @@ export default class TaskList {
           const closedButton = document.getElementById(`close${element.index}`);
           closedButton.innerHTML = '<i class="fas fa-trash"></i>';
           closedButton.style.cursor = 'move';
-
+            //remove item
           closedButton.addEventListener('click', () => {
             li[element.index].remove();
             this.remove(element.index - 1);
-          });
+          }); 
+
+          //close button
           const autresButton = document.querySelectorAll('.ferme');
           autresButton.forEach((unBoutton) => {
             if (unBoutton.id !== `close${element.index}`) {
@@ -76,10 +78,24 @@ export default class TaskList {
           });
         });
 
-        textEl[element.index].addEventListener('mouseup', () => {
-          const closedButton = document.getElementById(`close${element.index}`);
-          closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+        textEl[element.index].addEventListener('mouseleave', () => {
+            button[element.index].innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+            this.update(element.index,textEl[element.index].innerHTML);
+            const closedButton = document.getElementById(`close${element.index}`);
+            closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+            console.log(textEl[element.index])
+            console.log(textEl[element.index].innerHTML)
+            console.log(element.index)
         });
+
+        textEl[element.index].addEventListener('mouseup', () => {
+            // const closedButton = document.getElementById(`close${element.index}`);
+            // closedButton.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+            // console.log(textEl[element.index])
+            // console.log(textEl[element.index].innerHTML)
+            // console.log(element.index)
+          });
+    
       });
     }
   }
@@ -108,11 +124,11 @@ export default class TaskList {
   }
 
   update(num, description) {
-    if (this.listArray[num].index === Number(num)) {
-      this.listArray[num].description = description;
+    if (this.listArray[num-1].index === Number(num)) {
+      this.listArray[num-1].description = description;
     }
     this.listArray.forEach((el, index) => {
-      el.index = index;
+      el.index = index+1;
     });
     localStorage.setItem('todo_list', JSON.stringify(this.listArray));
     this.show();
