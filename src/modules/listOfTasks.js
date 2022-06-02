@@ -70,11 +70,9 @@ export default class TaskList {
           textEl[element.index], button[element.index]);
         listContainer.append(li[element.index]);
 
-        
-
-        //event listener for clicking
+        // event listener for clicking
         textEl[element.index].addEventListener('click', () => {
-            //get a close button
+          // get a close button
           const closedButton = document.getElementById(`close${element.index}`);
           closedButton.innerHTML = '<i class="fas fa-trash"></i>';
           closedButton.style.cursor = 'move';
@@ -95,31 +93,21 @@ export default class TaskList {
         });
 
         textEl[element.index].addEventListener('mouseleave', () => {
-            //button[element.index].innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-          //closedButton.style.cursor = 'move';
-          //textEl[element.index].removeEventListener('click', f)
           this.update(element.index, textEl[element.index].innerHTML);
         });
-       // Checkbox Element
-      input[element.index].addEventListener('change', (e) => {
-        const status = new Status();
-        if (input[element.index].checked) {
-          status.checked(lesTaches[element.index-1]);
-          console.log(lesTaches[element.index-1].completed);
-          this.updateStatus(input[element.index].id, lesTaches[element.index-1].completed)  
-          li[element.index].classList.add('checked');
-          console.log("Checkbox is checked..");
-          console.log(input[element.index].id);
-        } else {
-          status.unchecked(lesTaches[element.index-1]);
-          console.log(lesTaches[element.index-1].completed);
-          li[element.index].classList.remove('checked');
-          console.log("Checkbox is not checked..");
-          console.log(lesTaches);
-          this.updateStatus(input[element.index].id, lesTaches[element.index-1].completed)
-        }
-      });
-       
+        // Checkbox Element
+        input[element.index].addEventListener('change', () => {
+          const status = new Status();
+          if (input[element.index].checked) {
+            status.checked(lesTaches[element.index - 1]);
+            this.updateStatus(input[element.index].id, lesTaches[element.index - 1].completed);
+            li[element.index].classList.add('checked');
+          } else {
+            status.unchecked(lesTaches[element.index - 1]);
+            li[element.index].classList.remove('checked');
+            this.updateStatus(input[element.index].id, lesTaches[element.index - 1].completed);
+          }
+        });
       });
     }
   }
@@ -159,8 +147,7 @@ export default class TaskList {
   }
 
   updateStatus(id, status) {
-      console.log('id '+id)
-    this.listArray[id-1].status = status;
+    this.listArray[id - 1].status = status;
     localStorage.setItem('todo_list', JSON.stringify(this.listArray));
   }
 
@@ -173,7 +160,7 @@ export default class TaskList {
     clearAllCompleted = () => {
       this.listArray = this.listArray.filter((element) => element.completed === false);
       this.listArray.forEach((el, index) => {
-        el.index = index +1;
+        el.index = index + 1;
       });
       localStorage.setItem('todo_list', JSON.stringify(this.listArray));
       window.location.reload();
