@@ -47,7 +47,6 @@ Give a ⭐️ if you like this project!
 
 - [Microverse](https://www.microverse.org/)
 - Code Reviewers
-- Coding Partners
 
 ## 📝 License
 
