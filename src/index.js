@@ -6,6 +6,21 @@ import TaskList, { lesTaches } from './modules/listOfTasks.js';
 
 const addTask = document.getElementById('addTask');
 const input = document.getElementById('input_text');
+const reset = document.getElementById('resetAll');
+const clearDone = document.getElementById('clearDone');
+
+// reset All button
+
+reset.addEventListener('click', () => {
+  const taskList = new TaskList(lesTaches);
+  taskList.clearAll();
+});
+
+// delete done button
+clearDone.addEventListener('click', () => {
+  const taskList = new TaskList(lesTaches);
+  taskList.clearAllCompleted();
+});
 
 const completed = false;
 const taskList = new TaskList(lesTaches);
