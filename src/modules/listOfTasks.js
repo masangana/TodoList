@@ -27,7 +27,6 @@ export default class TaskList {
         // const declaration
         const li = [];
         const button = [];
-        const buttonCheck = [];
         const textEl = [];
         const input = [];
         //
@@ -38,19 +37,10 @@ export default class TaskList {
         input[element.index].setAttribute('type', 'checkbox');
         input[element.index].classList.add('checkbox');
         input[element.index].setAttribute('id', element.index);
-        
-        buttonCheck[element.index] = document.createElement('button');
-        buttonCheck[element.index].setAttribute('id', element.index);
-        buttonCheck[element.index].classList.add('check-button');
-        if (element.completed === true) {
-          
+
+        if (element.completed === true) {     
           input[element.index].setAttribute('checked', 'checked');
           li[element.index].classList.add('checked');
-          buttonCheck[element.index].setAttribute('contenteditable', false);
-          buttonCheck[element.index].classList.add('check-button');
-          buttonCheck[element.index].innerHTML = '<i class="far fa-check-circle"></i>';
-        } else {          
-          buttonCheck[element.index].innerHTML = '<i class="far fa-circle"></i>';
         }
 
         textEl[element.index] = document.createElement('p');
