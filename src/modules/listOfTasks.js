@@ -4,7 +4,6 @@ import Status from './status.js';
 export const lesTaches = JSON.parse(localStorage.getItem('todo_list'));
 if (lesTaches === null) {
   localStorage.todo_list = JSON.stringify([]);
-  // lesTaches = [JSON.stringify([])];
 }
 
 export default class TaskList {
@@ -34,27 +33,23 @@ export default class TaskList {
         //
         li[element.index] = document.createElement('li');
         li[element.index].setAttribute('id', element.index);
+
+        input[element.index] = document.createElement('input');
+        input[element.index].setAttribute('type', 'checkbox');
+        input[element.index].classList.add('checkbox');
+        input[element.index].setAttribute('id', element.index);
+        
+        buttonCheck[element.index] = document.createElement('button');
+        buttonCheck[element.index].setAttribute('id', element.index);
+        buttonCheck[element.index].classList.add('check-button');
         if (element.completed === true) {
-          input[element.index] = document.createElement('input');
-          input[element.index].setAttribute('type', 'checkbox');
-          input[element.index].classList.add('checkbox');
-          input[element.index].setAttribute('id', element.index);
+          
           input[element.index].setAttribute('checked', 'checked');
           li[element.index].classList.add('checked');
-          buttonCheck[element.index] = document.createElement('button');
-          buttonCheck[element.index].setAttribute('id', element.index);
           buttonCheck[element.index].setAttribute('contenteditable', false);
           buttonCheck[element.index].classList.add('check-button');
           buttonCheck[element.index].innerHTML = '<i class="far fa-check-circle"></i>';
-        } else {
-          input[element.index] = document.createElement('input');
-          input[element.index].setAttribute('type', 'checkbox');
-          input[element.index].classList.add('checkbox');
-          input[element.index].setAttribute('id', element.index);
-          buttonCheck[element.index] = document.createElement('button');
-          buttonCheck[element.index].setAttribute('id', element.index);
-          // li[element.index].setAttribute('contenteditable', true);
-          buttonCheck[element.index].classList.add('check-button');
+        } else {          
           buttonCheck[element.index].innerHTML = '<i class="far fa-circle"></i>';
         }
 
@@ -143,7 +138,6 @@ export default class TaskList {
       el.index = index + 1;
     });
     localStorage.setItem('todo_list', JSON.stringify(this.listArray));
-    // this.show();
   }
 
   updateStatus(id, status) {

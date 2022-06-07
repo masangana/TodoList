@@ -1,7 +1,5 @@
-// import _ from 'lodash';
 import 'bootstrap';
 import './style.scss';
-// import loopTask from './modules/taskList.js';
 import TaskList, { lesTaches } from './modules/listOfTasks.js';
 
 const addTask = document.getElementById('addTask');
