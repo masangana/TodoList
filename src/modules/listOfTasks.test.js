@@ -62,3 +62,20 @@ describe('Test remove tasks', () => {
         expect(taskList.listArray[1].description).toEqual('Task 2');
     } )
 })
+
+describe('Test update tasks', () => {
+
+    test('Add one task and update his descp', () => {
+        const table=[];
+        const taskList = new TaskList(table)
+        taskList.add('FirstTask', false);
+        taskList.update(1,'New description')
+        expect(taskList.listArray[0].description).toEqual('New description');
+    } )
+
+})
+
+describe('Test edit tasks statut', () => {
+
+
+})
