@@ -32,6 +32,14 @@ Should use webpack and a server
 👤 **Alex Masangana**
 
 - GitHub: [@masangana](https://github.com/masanagna)
+
+## Author2
+
+👤 **Waqas Ahmad**
+
+- GitHub: [@githubhandle](https://github.com/waqas)
+- Twitter: [@twitterhandle](https://twitter.com/waqas)
+- LinkedIn: [@LinkedIn](https://linkedin.com/in/waqas)
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
