@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
- document.body.innerHTML = '<ul class=\'listContainer\'></ul>';
+document.body.innerHTML = '<ul class=\'listContainer\'></ul>';
 import TaskList from "./listOfTasks";
 
 describe('Test add tasks', () => {
@@ -81,7 +81,19 @@ describe('Test edit tasks statut', () => {
         const taskList = new TaskList(table)
         taskList.add('FirstTask', false);
         taskList.updateStatus(1,true)
-        expect(taskList.listArray[0].description).toBe(true);
+        expect(taskList.listArray[0].status).toBeTruthy();
     } )    
 
+    test('update mutible status', () => {
+        const table=[];
+        const taskList = new TaskList(table)
+        taskList.add('Task 0', false);
+        taskList.add('Task 1', false);
+        taskList.add('Task 2', false);
+        taskList.add('Task 3', false);
+        taskList.updateStatus(1,true);
+        taskList.updateStatus(2,true);
+        taskList.updateStatus(1,false)
+        expect(taskList.listArray[1].status).not.toBeTruthy();
+    } )
 })
