@@ -38,7 +38,7 @@ export default class TaskList {
         input[element.index].classList.add('checkbox');
         input[element.index].setAttribute('id', element.index);
 
-        if (element.completed === true) {     
+        if (element.completed === true) {
           input[element.index].setAttribute('checked', 'checked');
           li[element.index].classList.add('checked');
         }
