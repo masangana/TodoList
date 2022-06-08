@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import TaskList from './listOfTasks';
+import TaskList from './listOfTasks.js';
 
-document.body.innerHTML = '<ul class=\'listContainer\'></ul>';
+document.body.innerHTML = '<ul class=\'list-cont\'></ul>';
 
 describe('Test add tasks', () => {
   test('Add one task', () => {
@@ -13,12 +13,16 @@ describe('Test add tasks', () => {
     expect(taskList.length).not.toBeNull();
   });
 
+  /* Checking one instance of the object */
+
   test('Check the position', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('Call me', false);
     expect(taskList.listArray[0].description).toEqual('Call me');
   });
+
+  /* Check if the third task is the same one which we added */
 
   test('Add multiple tasks and return one element', () => {
     const table = [];
@@ -30,7 +34,9 @@ describe('Test add tasks', () => {
     expect(taskList.listArray[3].description).toEqual('Task 3');
   });
 
-  test('Add multiple tasks and retur the size of the table', () => {
+  /* Check if we have added the same number of itmes in the list */
+
+  test('Add multiple tasks and return the size of the table', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('Task 0', false);
@@ -42,7 +48,7 @@ describe('Test add tasks', () => {
 });
 
 describe('Test remove tasks', () => {
-  test('Add one task', () => {
+  test('Remove one task', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('FirstTask', false);
@@ -63,7 +69,7 @@ describe('Test remove tasks', () => {
 });
 
 describe('Test update tasks', () => {
-  test('Add one task and update his descp', () => {
+  test('Add one task and update his descpription', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('FirstTask', false);
@@ -72,8 +78,8 @@ describe('Test update tasks', () => {
   });
 });
 
-describe('Test edit tasks statut', () => {
-  test('Add one task and update his descp', () => {
+describe('Test edit tasks status', () => {
+  test('Add one task and update his description', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('FirstTask', false);
@@ -81,7 +87,7 @@ describe('Test edit tasks statut', () => {
     expect(taskList.listArray[0].status).toBeTruthy();
   });
 
-  test('update mutible status', () => {
+  test('update multiple status', () => {
     const table = [];
     const taskList = new TaskList(table);
     taskList.add('Task 0', false);
@@ -91,6 +97,6 @@ describe('Test edit tasks statut', () => {
     taskList.updateStatus(1, true);
     taskList.updateStatus(2, true);
     taskList.updateStatus(1, false);
-    expect(taskList.listArray[1].status).not.toBeTruthy();
+    expect(taskList.listArray[1].status).toEqual(false);
   });
 });
