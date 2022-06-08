@@ -68,3 +68,59 @@ describe('Test remove tasks', () => {
   });
 });
 
+describe('Test update tasks', () => {
+    test('Add one task and update his descpription', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('FirstTask', false);
+      taskList.update(1, 'New description');
+      expect(taskList.listArray[0].description).toEqual('New description');
+    });
+  });
+  
+  describe('Test edit tasks status', () => {
+    test('Add one task and update his description', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('FirstTask', false);
+      taskList.updateStatus(1, true);
+      expect(taskList.listArray[0].status).toBeTruthy();
+    });
+  
+    test('update multiple status', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('Task 0', false);
+      taskList.add('Task 1', false);
+      taskList.add('Task 2', false);
+      taskList.add('Task 3', false);
+      taskList.updateStatus(1, true);
+      taskList.updateStatus(2, true);
+      taskList.updateStatus(1, false);
+      expect(taskList.listArray[0].status).toEqual(false);
+    });
+  });
+  
+  describe('remove completed task', () => {
+    test('remove completed', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('FirstTask', false);
+      taskList.add('Task 2', true);
+      taskList.add('Task 3', true);
+      taskList.add('Task 4', true);
+      taskList.clearAllCompleted();
+      expect(taskList.listArray.length).toBe(1);
+    });
+  
+    test('remove one completed', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('Task 0', false);
+      taskList.add('Task 1', true);
+      taskList.add('Task 2', true);
+      taskList.add('Task 3', false);
+      taskList.clearAllCompleted();
+      expect(taskList.listArray.length).toBe(2);
+    });
+  });
