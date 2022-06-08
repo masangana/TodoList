@@ -100,3 +100,27 @@ describe('Test edit tasks status', () => {
     expect(taskList.listArray[0].status).toEqual(false);
   });
 });
+
+describe('remove completed task', () => {
+    test('remove completed', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('FirstTask', false);
+      taskList.add('Task 2', true);
+      taskList.add('Task 3', true);
+      taskList.add('Task 4', true);
+      taskList.clearAllCompleted();
+      expect(taskList.listArray.length).toBe(1);
+    });
+  
+    test('remove one completed', () => {
+      const table = [];
+      const taskList = new TaskList(table);
+      taskList.add('Task 0', false);
+      taskList.add('Task 1', true);
+      taskList.add('Task 2', true);
+      taskList.add('Task 3', false);
+      taskList.clearAllCompleted();
+      expect(taskList.listArray.length).toBe(2);
+    });
+  });
