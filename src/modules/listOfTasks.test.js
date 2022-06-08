@@ -97,6 +97,6 @@ describe('Test edit tasks status', () => {
     taskList.updateStatus(1, true);
     taskList.updateStatus(2, true);
     taskList.updateStatus(1, false);
-    expect(taskList.listArray[1].status).toEqual(false);
+    expect(taskList.listArray[0].status).toEqual(false);
   });
 });

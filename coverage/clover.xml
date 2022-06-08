@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1654702152639" clover="3.2.0">
-  <project timestamp="1654702152639" name="All files">
+<coverage generated="1654703423763" clover="3.2.0">
+  <project timestamp="1654703423763" name="All files">
     <metrics statements="96" coveredstatements="31" conditionals="19" coveredconditionals="5" methods="22" coveredmethods="9" elements="137" coveredelements="45" complexity="0" loc="96" ncloc="96" packages="1" files="3" classes="3"/>
-    <file name="listOfTasks.js" path="E:\Mega\Software Development\Microverse\pair-todolist\TodoList\src\modules\listOfTasks.js">
+    <file name="listOfTasks.js" path="C:\Users\Pegase\Desktop\coursejs\projects\app-meteo-javaScript-master\TodoList\src\modules\listOfTasks.js">
       <metrics statements="88" coveredstatements="28" conditionals="18" coveredconditionals="5" methods="18" coveredmethods="8"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -93,7 +93,7 @@
       <line num="149" count="0" type="stmt"/>
       <line num="150" count="0" type="stmt"/>
     </file>
-    <file name="status.js" path="E:\Mega\Software Development\Microverse\pair-todolist\TodoList\src\modules\status.js">
+    <file name="status.js" path="C:\Users\Pegase\Desktop\coursejs\projects\app-meteo-javaScript-master\TodoList\src\modules\status.js">
       <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <line num="3" count="0" type="stmt"/>
       <line num="6" count="0" type="stmt"/>
@@ -101,7 +101,7 @@
       <line num="10" count="0" type="stmt"/>
       <line num="11" count="0" type="stmt"/>
     </file>
-    <file name="taks.js" path="E:\Mega\Software Development\Microverse\pair-todolist\TodoList\src\modules\taks.js">
+    <file name="taks.js" path="C:\Users\Pegase\Desktop\coursejs\projects\app-meteo-javaScript-master\TodoList\src\modules\taks.js">
       <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="3" count="21" type="stmt"/>
       <line num="4" count="21" type="stmt"/>
